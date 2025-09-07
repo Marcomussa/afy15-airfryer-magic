@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Instagram, Twitter, Facebook, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const socialLinks = [
@@ -10,15 +11,15 @@ const Footer = () => {
   ];
 
   const legalLinks = [
-    { label: 'Términos y condiciones', href: '/terminos-y-condiciones' },
-    { label: 'Política de privacidad', href: '/politica-de-privacidad' },
+    { label: 'Términos y condiciones', href: '/terms-and-conditions' },
+    { label: 'Política de privacidad', href: '/privacy-policy' },
     { label: 'Cookies', href: '#' }
   ];
 
   return (
     <footer className="bg-gradient-to-t from-accent/10 to-background border-t border-border/50">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -98,12 +99,42 @@ const Footer = () => {
             </ul>
           </motion.div>
 
+          {/* Legal Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+          >
+            <h3 className="font-display font-semibold text-foreground mb-4 text-lg">
+              Legal
+            </h3>
+            <ul className="space-y-3">
+              {legalLinks.map((link, index) => (
+                <motion.li
+                  key={link.label}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
+                >
+                  <Link 
+                    to={link.href}
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200 inline-block hover:translate-x-1 transform transition-transform"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
           {/* Contact */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
             <h3 className="font-display font-semibold text-foreground mb-4 text-lg">
               Contacto
@@ -131,7 +162,7 @@ const Footer = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           className="border-t border-border/50 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
         >
           <div className="text-sm text-muted-foreground">
@@ -140,17 +171,20 @@ const Footer = () => {
           
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             {legalLinks.map((link, index) => (
-              <motion.a
+              <motion.div
                 key={link.label}
-                href={link.href}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
               >
-                {link.label}
-              </motion.a>
+                <Link
+                  to={link.href}
+                  className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
           </div>
         </motion.div>
