@@ -10,8 +10,8 @@ const Footer = () => {
   ];
 
   const legalLinks = [
-    { label: 'Términos y condiciones', href: '#' },
-    { label: 'Política de privacidad', href: '#' },
+    { label: 'Términos y condiciones', href: '/terminos-y-condiciones' },
+    { label: 'Política de privacidad', href: '/politica-de-privacidad' },
     { label: 'Cookies', href: '#' }
   ];
 
